@@ -1,13 +1,12 @@
-/*
-GAME RULES:
+// GAME RULES:
 
-- The game has 2 players, playing in rounds
-- In each turn, a player rolls a dice as many times as he whishes. Each result get added to his ROUND score
-- BUT, if the player rolls a 1, all his ROUND score gets lost. After that, it's the next player's turn
-- The player can choose to 'Hold', which means that his ROUND score gets added to his GLBAL score. After that, it's the next player's turn
-- The first player to reach 100 points on GLOBAL score wins the game
+// - The game has 2 players, playing in rounds
+// - In each turn, a player rolls a dice as many times as he whishes. Each result get added to his ROUND score
+// - BUT, if the player rolls a 1, all his ROUND score gets lost. After that, it's the next player's turn
+// - The player can choose to 'Hold', which means that his ROUND score gets added to his GLBAL score. After that, it's the next player's turn
+// - The first player to reach 100 points on GLOBAL score wins the game
 
-*/
+
 
 var scores, roundScore, activePlayer, gameplaying;
 
@@ -23,22 +22,30 @@ init();
 //for reading data
 //var x = document.querySelector('#current-'+activePlayer).textContent; 
 
-
+var temp;
 
 
 document.querySelector('.btn-roll').addEventListener('click', function(){
 
 	if (gameplaying){
 		//Randon number
-		var dice =  Math.floor( Math.random() * 6 + 1);
+		var dice = Math.floor( Math.random() * 6 + 1);
 
 		//Display the img
 		var diceDOM = document.querySelector('.dice');
 		diceDOM.style.display = 'block';
 		diceDOM.src = 'dice-' + dice + '.png';
+/*
+		if ( dice === temp){
+
+			scores[activePlayer]=0;
+			document.querySelector('#score-'+activePlayer).textContent = '0';
+			nextPlayer();
+
+		}*/
 
 		//Update the round score
-		if (dice !== 1){
+		if (dice !== 1 ){
 		//Add round score
 		roundScore += dice;
 		document.querySelector('#current-' + activePlayer).textContent = roundScore;
@@ -51,6 +58,8 @@ document.querySelector('.btn-roll').addEventListener('click', function(){
 	 	//document.querySelector('.player-0-panel').classList.remove('active');
 	 	//document.querySelector('.player-1-panel').classList.add('active');
 			 }
+
+		/*temp=dice; */
 
 
 	}
@@ -142,3 +151,4 @@ function nextPlayer(){
 
 	 	document.querySelector('.dice').style.display = 'none';
 }
+
